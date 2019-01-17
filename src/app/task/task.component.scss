@@ -5,10 +5,17 @@
     margin: 0.3em 0;
 }
 
+.task h2{
+    text-align: center;
+}
 .controls{
     opacity: 0;
     transition: opacity 1s;
 }
 .task:hover .controls {
     opacity:1;
+}
+
+.description{
+    text-align: center;
 }

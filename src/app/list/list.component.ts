@@ -9,7 +9,9 @@ import { DataManagerService } from '../data-manager.service';
 })
 export class ListComponent {
 @Input() list: List;
-  constructor(private dataService:DataManagerService) { }
+editing = false;  
+oldName:string;
+constructor(private dataService:DataManagerService) { }
 
   delete(){
   if(confirm('Do you want to delete the list: ' + this.list.name)){
@@ -23,6 +25,19 @@ export class ListComponent {
     }  
     
   }
-  
+  editName(){
+    this.oldName = this.list.name;
+    this.dataService.editListName(this.list);
+    this.editing = false;
+  }
+  edit(){
+    this.oldName = this.list.name;
+    this.editing = true;
+  }
+
+  cancelEdit(){
+    this.list.name = this.oldName;
+    this.editing = false;
+  }
 }
 

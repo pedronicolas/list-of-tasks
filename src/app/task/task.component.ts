@@ -26,6 +26,7 @@ export class TaskComponent  {
       this.dataService.changeTaskCompleted(this.task);
       console.log(this.task);
       
+      
     }
 }
 

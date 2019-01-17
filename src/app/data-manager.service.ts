@@ -97,10 +97,12 @@ export class DataManagerService {
 
 
   changeTaskCompleted(task:Task){
-    task.completed = !task.completed;
-    if (task.completed===true){
-      console.log('true');
-    }
+    task.completed = !task.completed;  
+  }
+
+  editListName(list:List){
+    this.data.lists = this.data.lists
+    .map(listObj=> listObj.listId===list.listId ? list : listObj);
   }
 
 constructor() { }
