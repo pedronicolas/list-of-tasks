@@ -1,0 +1,19 @@
+@import '../../variables.scss';
+
+
+header{
+    height: $headerHeight;
+    background: linear-gradient(to left,white,blue);
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+input{
+    all: unset;
+    background: transparent;
+    color: white;
+    border-bottom: 1px solid white;
+    &::placeholder{
+        color: whitesmoke;
+    }
+}

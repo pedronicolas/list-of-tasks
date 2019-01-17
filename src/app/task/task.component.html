@@ -1,0 +1,12 @@
+<div class="task" >
+  <h2>{{task.text}}</h2>
+  <!-- <input type="checkbox" name="completada" (change)="changeCompleted()"> -->
+  <div  (click)=deleteTask()>❌ </div>
+  <select>
+      <option value="white">White</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+      <option value="red">Red</option>
+  </select>
+  <div>{{task.completada}}</div>
+</div>

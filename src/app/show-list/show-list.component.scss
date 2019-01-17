@@ -1,0 +1,17 @@
+@import '../../variables.scss';
+
+.showLists{
+    background: grey;
+    min-height:calc(100vh - #{$headerHeight});
+    padding: 3px;
+    
+    
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+// $headerHeight
+
+h1{
+    margin-top: 0;
+}
