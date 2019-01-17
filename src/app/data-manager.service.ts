@@ -19,6 +19,7 @@ export class DataManagerService {
             listId:0,
             taskId:0,
             text:'aprender angular',
+            description: '',
             completed: false,
             color:'white',
             createdAt: new Date(),
@@ -59,6 +60,7 @@ export class DataManagerService {
         listId,
         taskId:Date.now(),
         text,
+        description: '',
         completed: false,
         color:'white',
         createdAt: now,
@@ -87,8 +89,15 @@ export class DataManagerService {
     }
   }
 
+
+  addNewDescription(task:Task, description:string){
+    task.description = description;
+  }
+
+
+
   // changeTaskCompleted(task:Task){
-  //   let listId= this.buscaIdLista(task.listId);
+  //   let listId = this.buscaIdLista(task.listId);
   //   let taskChange = this.data.lists[listId].tasks[task.taskId].completed;
     
   //   if(taskChange === false){

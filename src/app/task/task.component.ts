@@ -17,6 +17,10 @@ export class TaskComponent  {
     }  
   }
 
+  addDescription(ev){
+    this.dataService.addNewDescription(this.task,ev.target.value.trim());
+    ev.target.value = '';
+  }
 
   // changeCompleted(){
   //    this.dataService.changeTaskCompleted(this.task);
