@@ -2,6 +2,8 @@
   <h2>{{task.text}}</h2>
   <div>{{task.description}}</div>
   
+  <div class="controls">
+  <input type="checkbox" name="Completada" [checked]="task.completed" (change)="isTrue()">
   <input type="text" placeholder="añade descripción" (keyup.enter)="addDescription($event)" >
   <div  (click)=deleteTask()>❌ </div>
   <select>
@@ -11,4 +13,6 @@
       <option value="red">Red</option>
   </select>
   <div>{{task.completada}}</div>
+</div>
+
 </div>

@@ -4,3 +4,11 @@
     padding: 0.3em;
     margin: 0.3em 0;
 }
+
+.controls{
+    opacity: 0;
+    transition: opacity 1s;
+}
+.task:hover .controls {
+    opacity:1;
+}

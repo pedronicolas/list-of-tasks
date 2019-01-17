@@ -22,8 +22,10 @@ export class TaskComponent  {
     ev.target.value = '';
   }
 
-  // changeCompleted(){
-  //    this.dataService.changeTaskCompleted(this.task);
-  //  }
+   isTrue(){
+      this.dataService.changeTaskCompleted(this.task);
+      console.log(this.task);
+      
+    }
 }
 

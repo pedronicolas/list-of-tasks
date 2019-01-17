@@ -3,7 +3,7 @@
   <div class="tasks">
     <app-task *ngFor="let taskObj of list.tasks" [task]="taskObj"></app-task>
   </div>
-  <div (click)=delete()>Borrar </div>
+  <div (click)=delete()>❌ </div>
   <input type="text" placeholder="add task" (keyup.enter)=addNewTask($event)>
 
   

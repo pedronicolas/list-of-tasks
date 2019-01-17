@@ -96,16 +96,12 @@ export class DataManagerService {
 
 
 
-  // changeTaskCompleted(task:Task){
-  //   let listId = this.buscaIdLista(task.listId);
-  //   let taskChange = this.data.lists[listId].tasks[task.taskId].completed;
-    
-  //   if(taskChange === false){
-  //     taskChange = true;
-  //   } else {
-  //     taskChange = false;
-  //   }
-  // }
+  changeTaskCompleted(task:Task){
+    task.completed = !task.completed;
+    if (task.completed===true){
+      console.log('true');
+    }
+  }
 
 constructor() { }
 }
