@@ -21,8 +21,8 @@
 }
 input{
     all:unset;
-    border-bottom:  1px solid grey;
-    color:grey;
+    border-bottom:  1px solid black;
+    color:black;
     width: 100%
 }
 
@@ -30,4 +30,5 @@ input{
     opacity: 0.3;
     text-decoration: line-through;
     background: grey;
+    color: rgb(104, 233, 114);
   }

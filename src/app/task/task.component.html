@@ -1,6 +1,6 @@
 <div [style.background] = "task.color" class="task {{ task.completed ? 'completada' : '' }}" >
 <div>
-  <h2> <span *ngIf="!editing" (dblclick)="edit()">{{task.text}}</span></h2>
+  <h2> <span *ngIf="!editing" (dblclick)="editTask()">{{task.text}}</span></h2>
   <input *ngIf="editing" (blur)= "cancelEditTask()" (keyup.enter)="editTask()" type="text" [(ngModel)]="task.text">
 </div>
   <div class="description">{{task.description}}</div>
@@ -14,9 +14,9 @@
   <div  (click)=deleteTask()>❌ </div>
   <select (change)="changeColor($event)">
       <option value="white" >White</option>
-      <option value="blue">Blue</option>
-      <option value="green">Green</option>
-      <option value="red">Red</option>
+      <option value="rgb(91, 91, 235)">Blue</option>
+      <option value="rgb(104, 233, 114)">Green</option>
+      <option value="rgb(216, 117, 117)">Red</option>
   </select>
   
 </div>

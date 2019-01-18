@@ -10,6 +10,8 @@ import { ListComponent } from './list/list.component';
 import { TaskComponent } from './task/task.component';
 import { DataManagerService } from './data-manager.service';
 import {FormsModule} from '@angular/forms';
+import { RegisterViewComponent } from './register-view/register-view.component';
+import { LoginViewComponent } from './login-view/login-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {FormsModule} from '@angular/forms';
     ShowListComponent,
     AddNewListComponent,
     ListComponent,
-    TaskComponent
+    TaskComponent,
+    RegisterViewComponent,
+    LoginViewComponent
   ],
   imports: [
     BrowserModule,
