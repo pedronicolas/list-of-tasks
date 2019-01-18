@@ -102,7 +102,17 @@ export class DataManagerService {
 
   editListName(list:List){
     this.data.lists = this.data.lists
-    .map(listObj=> listObj.listId===list.listId ? list : listObj);
+    .map(listObj=> listObj.listId === list.listId ? list : listObj);
+  }
+
+  editTaskText(task:Task){
+    this.data.lists[task.listId].tasks[task.taskId].text = task.text;
+  }
+
+  changeColor(task:Task, color1:string){
+    task.color = color1;
+    console.log(task.color);
+    
   }
 
 constructor() { }

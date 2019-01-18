@@ -9,6 +9,9 @@ import { DataManagerService } from '../data-manager.service';
 })
 export class TaskComponent  {
 @Input() task: Task;
+oldText: string;
+editing;
+
   constructor(private dataService: DataManagerService ) { }
 
   deleteTask(){
@@ -22,11 +25,31 @@ export class TaskComponent  {
     ev.target.value = '';
   }
 
-   isTrue(){
+  isTrue(){
       this.dataService.changeTaskCompleted(this.task);
       console.log(this.task);
       
       
-    }
+  }
+
+  editTextTask(){
+    this.oldText = this.task.text;
+    this.dataService.editTaskText(this.task);
+    this.editing = false;
+  }
+  editTask(){
+    this.oldText = this.task.text;
+    this.editing = true;
+  }
+
+  cancelEditTask(){
+    this.task.text = this.oldText;
+    this.editing = false;
+  }
+
+  changeColor(ev){
+      this.dataService.changeColor(this.task,ev.target.value.trim());
+  }
+  
 }
 

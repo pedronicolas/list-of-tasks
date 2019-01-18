@@ -19,3 +19,15 @@
 .description{
     text-align: center;
 }
+input{
+    all:unset;
+    border-bottom:  1px solid grey;
+    color:grey;
+    width: 100%
+}
+
+.completada {
+    opacity: 0.3;
+    text-decoration: line-through;
+    background: grey;
+  }

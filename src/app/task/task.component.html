@@ -1,15 +1,19 @@
-<div class="task" >
-  <h2>{{task.text}}</h2>
+<div [style.background] = "task.color" class="task {{ task.completed ? 'completada' : '' }}" >
+<div>
+  <h2> <span *ngIf="!editing" (dblclick)="edit()">{{task.text}}</span></h2>
+  <input *ngIf="editing" (blur)= "cancelEditTask()" (keyup.enter)="editTask()" type="text" [(ngModel)]="task.text">
+</div>
   <div class="description">{{task.description}}</div>
   
   <div class="controls">
   
-    <!-- <input type="checkbox" name="Completada" [checked]="task.completed" (change)="isTrue()"> -->
+    <input type="checkbox" name="Completada" [checked]="task.completed" (change)="isTrue()">
   <input type="text" placeholder="añade descripción" (keyup.enter)="addDescription($event)" >
   <div (click)="isTrue()">✔️</div>
+  <div (click)=editTask()>EDITAR NOMBRE TAREA ✏️</div>
   <div  (click)=deleteTask()>❌ </div>
-  <select>
-      <option value="white">White</option>
+  <select (change)="changeColor($event)">
+      <option value="white" >White</option>
       <option value="blue">Blue</option>
       <option value="green">Green</option>
       <option value="red">Red</option>
