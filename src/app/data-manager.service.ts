@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { List, Task } from "./models.interface";
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
+
+
 export class DataManagerService {
+  
+  constructor(private api: ApiService) { }
+  
   data: {lists: Array<List>} = {
     lists:[
       {
@@ -117,5 +123,5 @@ export class DataManagerService {
 
   
 
-constructor() { }
+
 }
