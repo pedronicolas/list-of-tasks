@@ -12,6 +12,7 @@ import { DataManagerService } from './data-manager.service';
 import {FormsModule} from '@angular/forms';
 import { RegisterViewComponent } from './register-view/register-view.component';
 import { LoginViewComponent } from './login-view/login-view.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginViewComponent } from './login-view/login-view.component';
     ListComponent,
     TaskComponent,
     RegisterViewComponent,
-    LoginViewComponent
+    LoginViewComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
