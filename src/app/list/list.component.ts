@@ -27,7 +27,7 @@ constructor(private dataService:DataManagerService) { }
   }
   editName(){
     this.oldName = this.list.name;
-    this.dataService.editListName(this.list);
+    this.dataService.editListName(this.list.listId,this.list.name);
     this.editing = false;
   }
   edit(){

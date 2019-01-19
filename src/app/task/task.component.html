@@ -1,7 +1,7 @@
 <div [style.background] = "task.color" class="task {{ task.completed ? 'completada' : '' }}" >
 <div>
   <h2> <span *ngIf="!editing" (dblclick)="editTask()">{{task.text}}</span></h2>
-  <input *ngIf="editing" (blur)= "cancelEditTask()" (keyup.enter)="editTask()" type="text" [(ngModel)]="task.text">
+  <input *ngIf="editing" (blur)= "cancelEditTask()" (keyup.enter)="editTextTask()" type="text" [(ngModel)]="task.text">
 </div>
   <div class="description">{{task.description}}</div>
   

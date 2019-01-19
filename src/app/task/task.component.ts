@@ -34,10 +34,11 @@ editing;
 
   editTextTask(){
     this.oldText = this.task.text;
-    this.dataService.editTaskText(this.task);
+    this.dataService.editTaskText(this.task.taskId,this.task.text);
     this.editing = false;
   }
   editTask(){
+    //this.dataService.editTaskText(this.task.taskId,this.task.text);
     this.oldText = this.task.text;
     this.editing = true;
   }

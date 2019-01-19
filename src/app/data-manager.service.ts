@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { List, Task } from "./models.interface";
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { ApiService } from './api.service';
+import { Router } from '@angular/router';
+import { async } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ import { ApiService } from './api.service';
 
 export class DataManagerService {
   
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private router: Router) { }
   
   data: {lists: Array<List>} = {
     lists:[
@@ -37,43 +39,94 @@ export class DataManagerService {
 
   }
 
+  loadDataFromBackend() {
+    this.api
+      .getLists()
+      .then((rawLists: Array<any>) => {
+        console.log(rawLists);
+        const lists = rawLists.map(rawList => ({
+          listId: rawList.id,
+          createdAt: rawList.createdAt,
+          modifiedAt: rawList.updatedAt,
+          name: rawList.name,
+          tasks: [],
+        }));
+        Promise.all(
+          lists.map(async (list: List) => {
+            list.tasks = await this.api.getTasks(list.listId);
+            list.tasks = list.tasks.map((rawTask: any) => ({
+              listId: rawTask.idlist,
+              taskId: rawTask.id,
+              text: rawTask.task,
+              completed: false,
+              color: 'white',
+              createdAt: new Date(rawTask.createdAt),
+              modifiedAt: new Date(rawTask.updatedAt),
+            }));
+            return list;
+          }),
+        ).then(lists => {
+          this.data.lists = lists;
+        });
+      })
+      .catch(() => this.router.navigate(['/login']));
+  }
+
   getData(){
+    this.loadDataFromBackend();
     return this.data;
   }
   
   addNewList(name:string){
-    const now = new Date();
-    const newList: List = {
-      listId:Date.now(),
-      createdAt: now,
-      modifiedAt: now,
-      name,
-      tasks:[],
-  }
-  this.data.lists.push(newList);
+  this.api.newList(name)
+    .then(res=>{
+      console.log(res);
+      this.loadDataFromBackend();
+    })
+  
+  
+    //   const now = new Date();
+  //   const newList: List = {
+  //     listId:Date.now(),
+  //     createdAt: now,
+  //     modifiedAt: now,
+  //     name,
+  //     tasks:[],
+  // }
+  // this.data.lists.push(newList);
 }
   
   deleteList(listId:number){
-    this.data.lists = this.data.lists.filter(list=> list.listId !== listId)
+    //this.data.lists = this.data.lists.filter(list=> list.listId !== listId)
+  
+    this.api.deleteList(listId).then(res => {
+      this.loadDataFromBackend();
+    });
+  
   }
+
+  // addTask(listId:number,task:string){
+  //   this.api.addTask(listId,task).then(res=> this.loadDataFromBackend());
+  // }
 
 
 
   addNewTask(listId:number,text:string){
-    const now = new Date();
-    const newTask = 
-      {
-        listId,
-        taskId:Date.now(),
-        text,
-        description: '',
-        completed: false,
-        color:'white',
-        createdAt: now,
-        modifiedAt: now,
-      };
+    this.api.addTask(listId,text).then(res=> this.loadDataFromBackend());
+    //   const now = new Date();
+  //   const newTask = 
+  //     {
+  //       listId,
+  //       taskId:Date.now(),
+  //       text,
+  //       description: '',
+  //       completed: false,
+  //       color:'white',
+  //       createdAt: now,
+  //       modifiedAt: now,
+  //     };
     
-   this.data.lists[this.buscaIdLista(listId)].tasks.push(newTask);
+  //  this.data.lists[this.buscaIdLista(listId)].tasks.push(newTask);
   }
 
   deleteTask(task1: Task){
@@ -106,13 +159,18 @@ export class DataManagerService {
     task.completed = !task.completed;  
   }
 
-  editListName(list:List){
-    this.data.lists = this.data.lists
-    .map(listObj=> listObj.listId === list.listId ? list : listObj);
+  editListName(idList:number,listText:string){
+    this.api.editList(idList,listText).then(res=> this.loadDataFromBackend());
+    
+    // this.data.lists = this.data.lists
+    // .map(listObj=> listObj.listId === list.listId ? list : listObj);
+
+
   }
 
-  editTaskText(task:Task){
-    this.data.lists[task.listId].tasks[task.taskId].text = task.text;
+  editTaskText(taskId:number,taskText:string){
+    //this.data.lists[task.listId].tasks[task.taskId].text = task.text;
+    this.api.editTask(taskId,taskText).then(res=> this.loadDataFromBackend());
   }
 
   changeColor(task:Task, color1:string){

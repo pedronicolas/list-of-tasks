@@ -42,14 +42,69 @@ export class ApiService {
     
   }
 
-  getLists(){
-    const options = {headers:{ Authorization: `Bearer ${this.jwt}`}}; 
-    this.http
-      .get('https://apitrello.herokuapp.com/list', options)
-      .toPromise()
-      .then(console.log)
-      .catch(console.error);
+  getLists(): any {
+    const options = { headers: { Authorization: `Bearer ${this.jwt}` } };
+    return this.http.get('https://apitrello.herokuapp.com/list', options).toPromise();
   }
 
-  
+  getTasks(idlist: number): any {
+    const options = { headers: { Authorization: `Bearer ${this.jwt}` } };
+    return new Promise((resolve, reject) => {
+      this.http
+        .get('https://apitrello.herokuapp.com/list/tasks/' + idlist, options)
+        .toPromise()
+        .then(tasks => {
+          if (tasks) {
+            resolve(tasks);
+          } else {
+            resolve([]);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          resolve([]);
+        });
+    });
+  }
+/*
+        FUNCIONES PARA LISTAS.
+*/
+
+  newList(name:string):any{
+    const options = {headers:{ Authorization: `Bearer ${this.jwt}`}}; 
+    const body = { name };
+    return this.http
+    .post('https://apitrello.herokuapp.com/list/',body, options).toPromise();
+  }
+
+  deleteList(id:number):any{
+    const options = {headers:{ Authorization: `Bearer ${this.jwt}`}};
+    return this.http.delete('https://apitrello.herokuapp.com/list/' + id, options)
+    .toPromise();
+  }
+
+  editList(idList:number,listText:string){
+    const options = {headers:{ Authorization: `Bearer ${this.jwt}`}};
+    const body = {name: listText};
+    return this.http.put('https://apitrello.herokuapp.com/list/'+idList,body,options)
+    .toPromise();
+  }
+
+
+  /*
+        FUNCIONES PARA TAREAS.
+  */
+  addTask(idList:number, task:string){
+    const options = {headers:{ Authorization: `Bearer ${this.jwt}`}}; 
+    const body = { idlist:idList , task };
+    return this.http.post('https://apitrello.herokuapp.com/tasks',body,options).toPromise();
+  }
+
+  editTask(idTask:number,task:string){
+    const options = {headers:{ Authorization: `Bearer ${this.jwt}`}};
+    const body = {task};
+    //console.log('ok');
+    return this.http.put('https://apitrello.herokuapp.com/tasks/'+idTask,body,options).toPromise();
+    
+  }
 }
