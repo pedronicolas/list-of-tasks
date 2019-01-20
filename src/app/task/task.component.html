@@ -3,15 +3,15 @@
   <h2> <span *ngIf="!editing" (dblclick)="editTask()">{{task.text}}</span></h2>
   <input *ngIf="editing" (blur)= "cancelEditTask()" (keyup.enter)="editTextTask()" type="text" [(ngModel)]="task.text">
 </div>
-  <div class="description">{{task.description}}</div>
+  
   
   <div class="controls">
   
     <input type="checkbox" name="Completada" [checked]="task.completed" (change)="isTrue()">
-  <input type="text" placeholder="añade descripción" (keyup.enter)="addDescription($event)" >
+  <!-- <input type="text" placeholder="añade descripción" (keyup.enter)="addDescription($event)" > -->
   <div (click)="isTrue()">✔️</div>
   <div (click)=editTask()>EDITAR NOMBRE TAREA ✏️</div>
-  <div  (click)=deleteTask()>❌ </div>
+  <div  (click)=deleteTaskAll()>❌ </div>
   <select (change)="changeColor($event)">
       <option value="white" >White</option>
       <option value="rgb(91, 91, 235)">Blue</option>

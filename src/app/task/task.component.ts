@@ -19,11 +19,16 @@ editing;
       this.dataService.deleteTask(this.task);
     }  
   }
-
-  addDescription(ev){
-    this.dataService.addNewDescription(this.task,ev.target.value.trim());
-    ev.target.value = '';
+  deleteTaskAll(){
+    if(confirm('Do you want to delete the task?')){
+      this.dataService.deleteTaskAll(this.task.listId);
+    }  
   }
+
+  // addDescription(ev){
+  //   this.dataService.addNewDescription(this.task,ev.target.value.trim());
+  //   ev.target.value = '';
+  // }
 
   isTrue(){
       this.dataService.changeTaskCompleted(this.task);

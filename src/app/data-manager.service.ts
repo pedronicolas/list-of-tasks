@@ -27,7 +27,6 @@ export class DataManagerService {
             listId:0,
             taskId:0,
             text:'aprender angular',
-            description: '',
             completed: false,
             color:'white',
             createdAt: new Date(),
@@ -138,6 +137,10 @@ export class DataManagerService {
     
   }
 
+  deleteTaskAll(idList:number){
+    this.api.deleteTaskAll(idList).catch(res=>this.loadDataFromBackend());
+  }
+
   buscaIdLista(id:number){ 
     let contador = 0;
     for(let id2 of this.data.lists){
@@ -149,9 +152,9 @@ export class DataManagerService {
   }
 
 
-  addNewDescription(task:Task, description:string){
-    task.description = description;
-  }
+  // addNewDescription(task:Task, description:string){
+  //   task.description = description;
+  // }
 
 
 

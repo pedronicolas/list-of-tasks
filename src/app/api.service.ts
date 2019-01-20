@@ -107,4 +107,9 @@ export class ApiService {
     return this.http.put('https://apitrello.herokuapp.com/tasks/'+idTask,body,options).toPromise();
     
   }
+
+  deleteTaskAll(idList:number){
+    const options = {headers:{ Authorization: `Bearer ${this.jwt}`}};
+    return this.http.delete('https://apitrello.herokuapp.com/list/tasks/'+ idList,options).toPromise();
+  }
 }
