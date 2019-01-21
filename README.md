@@ -22,7 +22,7 @@ SPANISH
 
 Si lo de arriba te ha dejado fuera de juego y prefieres leerlo en Español, aquí te lo dejo traducido:
 
-#ListOfTasks
+##ListOfTasksEs
 
 Este proyecto ha sido generado con Angular (https://github.com/angular/angular-cli) version 7.1.4. Puedes añadir listas y tareas dentro de listas y organizar todo tu trabajo, creando previamente un usuario con el que acceder. La app se encuentra todavía en fase de desarrollo, pero de momento puedes añadir las listas y tareas y cambiar el color de la tarea(esto solo durante la sesión actual), modificar los nombres de las tareas y listas y eliminarlas.
 
