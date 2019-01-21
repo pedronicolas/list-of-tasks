@@ -41,7 +41,7 @@ export class DataManagerService {
               color: 'white',
               createdAt: new Date(rawTask.createdAt),
               modifiedAt: new Date(rawTask.updatedAt),
-            }));
+            }));  
             return list;
           }),
         ).then(lists => {
