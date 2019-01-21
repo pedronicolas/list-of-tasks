@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { List, Task } from "./models.interface";
-import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { ApiService } from './api.service';
 import { Router } from '@angular/router';
 import { async } from 'q';
@@ -16,26 +15,7 @@ export class DataManagerService {
   constructor(private api: ApiService, private router: Router) { }
   
   data: {lists: Array<List>} = {
-    lists:[
-      {
-        listId:0,
-        createdAt: new Date(),
-        modifiedAt: new Date(),
-        name:'to do',
-        tasks:[
-          {
-            listId:0,
-            taskId:0,
-            text:'aprender angular',
-            completed: false,
-            color:'white',
-            createdAt: new Date(),
-            modifiedAt: new Date()
-          }
-        ]
-      }
-    ]
-
+    lists:[]
   }
 
   loadDataFromBackend() {
@@ -82,50 +62,22 @@ export class DataManagerService {
       console.log(res);
       this.loadDataFromBackend();
     })
-  
-  
-    //   const now = new Date();
-  //   const newList: List = {
-  //     listId:Date.now(),
-  //     createdAt: now,
-  //     modifiedAt: now,
-  //     name,
-  //     tasks:[],
-  // }
-  // this.data.lists.push(newList);
 }
   
-  deleteList(listId:number){
-    //this.data.lists = this.data.lists.filter(list=> list.listId !== listId)
-  
+  deleteList(listId:number){ 
     this.api.deleteList(listId).then(res => {
       this.loadDataFromBackend();
+    
+    this.api.deleteTaskAll(listId).catch(()=>this.loadDataFromBackend());  
     });
   
   }
 
-  // addTask(listId:number,task:string){
-  //   this.api.addTask(listId,task).then(res=> this.loadDataFromBackend());
-  // }
-
+  
 
 
   addNewTask(listId:number,text:string){
     this.api.addTask(listId,text).then(res=> this.loadDataFromBackend());
-    //   const now = new Date();
-  //   const newTask = 
-  //     {
-  //       listId,
-  //       taskId:Date.now(),
-  //       text,
-  //       description: '',
-  //       completed: false,
-  //       color:'white',
-  //       createdAt: now,
-  //       modifiedAt: now,
-  //     };
-    
-  //  this.data.lists[this.buscaIdLista(listId)].tasks.push(newTask);
   }
 
   deleteTask(task1: Task){
@@ -154,28 +106,15 @@ export class DataManagerService {
     }
   }
 
-
-  // addNewDescription(task:Task, description:string){
-  //   task.description = description;
-  // }
-
-
-
   changeTaskCompleted(task:Task){
     task.completed = !task.completed;  
   }
 
   editListName(idList:number,listText:string){
     this.api.editList(idList,listText).then(res=> this.loadDataFromBackend());
-    
-    // this.data.lists = this.data.lists
-    // .map(listObj=> listObj.listId === list.listId ? list : listObj);
-
-
   }
 
   editTaskText(taskId:number,taskText:string){
-    //this.data.lists[task.listId].tasks[task.taskId].text = task.text;
     this.api.editTask(taskId,taskText).then(res=> this.loadDataFromBackend());
   }
 
