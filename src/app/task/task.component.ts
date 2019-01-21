@@ -20,7 +20,7 @@ editing;
     }  
   }
   deleteTaskAll(){
-    if(confirm('Do you want to delete the task?')){
+    if(confirm('Do you want to delete ALL THE TASKS?')){
       this.dataService.deleteTaskAll(this.task.listId);
     }  
   }

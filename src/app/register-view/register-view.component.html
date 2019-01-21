@@ -4,10 +4,10 @@
     <input type="password" placeholder="password" [(ngModel)]="password" name="password">
     <input type="submit" value="register" >
 
-    <div *ngIf="error">{{error | json}}</div>
+    <!-- <div *ngIf="error">{{error | json}}</div> -->
     <div *ngIf="valid">
       registered!
       <button routerLink="/login">Go to login!</button>
-      {{valid | json}}
+      <!-- {{valid | json}} -->
     </div>
   </form>

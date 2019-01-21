@@ -3,8 +3,15 @@ nav{
     display: flex;
     justify-content: center;
     background: black;
+    border-radius: 2em;
     a{
         margin: 1em;
         color: white;
+        
     }
+    :hover{
+        background: green;
+        border-radius: 3em;
+    }
+   
 }

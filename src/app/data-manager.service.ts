@@ -138,6 +138,9 @@ export class DataManagerService {
   }
 
   deleteTaskAll(idList:number){
+    /*
+      AUNQUE SE CARGA EN EL CATCH, ES CORRECTA.
+    */
     this.api.deleteTaskAll(idList).catch(res=>this.loadDataFromBackend());
   }
 

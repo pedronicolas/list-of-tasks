@@ -1,8 +1,8 @@
 <div class="list">
-  <h1>
+  <h3>
     <span *ngIf="!editing" (dblclick)="edit()">{{list.name}}</span>
     <input *ngIf="editing" (blur)= "cancelEdit()" (keyup.enter)="editName()" type="text" [(ngModel)]="list.name">
-  </h1>
+  </h3>
   <div class="tasks">
     <app-task *ngFor="let taskObj of list.tasks" [task]="taskObj"></app-task>
   </div>
