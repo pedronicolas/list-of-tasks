@@ -19,4 +19,7 @@ export class AddNewListComponent  {
     
   }
 
+  logOut(){
+    this.dataService.logOut();
+  }
 }

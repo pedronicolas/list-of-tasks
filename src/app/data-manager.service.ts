@@ -124,7 +124,9 @@ export class DataManagerService {
     
   }
 
-  
+  logOut(){
+    this.api.logOut();
+  }
 
 
 }

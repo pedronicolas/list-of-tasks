@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 
 @Injectable({
@@ -7,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
   jwt:string;
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   register(username, password){
    return this.http.post('https://apitrello.herokuapp.com/users',{username,password})
@@ -40,6 +42,11 @@ export class ApiService {
     })
     })
     
+  }
+
+  logOut(){
+    this.jwt = '';
+    this.router.navigate(['/login']);
   }
 
   getLists(): any {
