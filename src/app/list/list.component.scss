@@ -5,7 +5,11 @@
     margin: 0.7em;
     
 }
-
+.list-controls{
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+}
 .list h3{
     text-align: center;
 }

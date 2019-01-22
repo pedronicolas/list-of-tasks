@@ -1,20 +1,26 @@
 nav{
     padding: 1em;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     background: black;
     border-radius: 2em;
-    a{
+    div,a{
         all: unset;
-        border: 0.2em solid white;
-        border-radius: 0.3em;
+        // border-radius: 0.3em;
         margin: 1em;
         color: white;
+        align-content: center;
+        h2{
+            color: white;
+        }
         
     }
-    :hover{
-        background: green;
-        border-radius: 3em;
+    // :hover{
+    //     background: green;
+    //     border-radius: 3em;
+    // }
+
+    h2{
+        color: white;
     }
-   
 }

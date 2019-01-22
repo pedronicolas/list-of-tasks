@@ -5,6 +5,14 @@
     margin: 0.3em 0;
 }
 
+ .delete-confirm{
+     display: flex;
+     flex-direction: row;
+    select{
+        all: unset;
+    }
+ }
+
 .task h2{
     text-align: center;
 }

@@ -6,7 +6,7 @@
   <div class="tasks">
     <app-task *ngFor="let taskObj of list.tasks" [task]="taskObj"></app-task>
   </div>
-  <div>
+  <div class="list-controls">
   <div (click)=delete()>❌ </div> 
   <div (click)=edit()>✏️</div>
   <input type="text" placeholder="add task" (keyup.enter)=addNewTask($event)>

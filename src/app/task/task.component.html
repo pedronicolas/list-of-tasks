@@ -6,19 +6,19 @@
   
   
   <div class="controls">
-  
-    <input type="checkbox" name="Completada" [checked]="task.completed" (change)="isTrue()">
-  <!-- <input type="text" placeholder="añade descripción" (keyup.enter)="addDescription($event)" > -->
-  <div (click)="isTrue()">✔️</div>
+  <input type="checkbox" name="Completada" [checked]="task.completed" (change)="isTrue()">
   <div (click)=editTask()>EDITAR NOMBRE TAREA ✏️</div>
-  <div  (click)=deleteTaskAll()>❌ </div>
+  <div class="delete-confirm">
+    <div (click)="isTrue()">✔️</div>
+    <div  (click)=deleteTaskAll()>❌ </div>
+  
   <select (change)="changeColor($event)">
       <option value="white" >White</option>
       <option value="rgb(91, 91, 235)">Blue</option>
       <option value="rgb(104, 233, 114)">Green</option>
       <option value="rgb(216, 117, 117)">Red</option>
   </select>
-  
+</div>
 </div>
 
 </div>
